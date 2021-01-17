@@ -12,7 +12,7 @@ header {
 }
 
 main {
-  height: 75%;
+  /* height: auto; */
 }
 
 .flex {
@@ -25,6 +25,7 @@ section {
   flex-basis: 0;
   background-color: #f1f1f1;
   margin: 10px;
+  padding: 15px;
   font-size: 30px;
   
 }
@@ -41,7 +42,16 @@ section {
   width: 150px;
   margin: 10px;
   background-color: blue;
+  color: white;
 }
+
+.forecastDay {
+  margin-top: 5px;
+  text-align: center;
+  font-size: 25px;
+  font-weight: bolder;
+}
+
 .left {
   flex-grow: 1;
   flex-direction: column;
@@ -69,6 +79,7 @@ table, td, tr {
   margin: 0px;
   padding: 10px;
   text-align: center;
+  width: 100%;
 
 }
 
