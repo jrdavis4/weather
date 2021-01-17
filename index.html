@@ -5,17 +5,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weather Search</title>
 
+  <!-- <link rel="stylesheet" href="assets/style/reset.css"> -->
   <link rel="stylesheet" href="assets/style/style.css">
 </head>
 <body>
   
   <header class="flex">
-    <h1>Welcome to Weather App!</h1>
+    <h1>Welcome to Weather Dashboard!</h1>
   </header>
 
   <main class="flex">
-    <section class="flex left">Search and recents</section>
-    <section class="flex right">Right side</section>
+
+    <section class="flex left">
+      <h5>Search for a City:</h5>
+      <form>
+        <input type="text" id="search">
+        <input type="submit" id="submit">
+      </form>
+      <table>
+        <tr>
+          <td>Asheville</td>
+        </tr>
+        <tr>
+          <td>Nashville</td>
+        </tr>
+      </table>
+    </section>
+
+    <section class="right">
+      <div id="current">
+        <h3 class="currentCity">Asheville</h3>
+        <p>Temperature: <span id="temp"></span></p>
+        <p>Humidity: <span id="humidity"></span></p>
+        <p>Wind Speed: <span id="wind"></span></p>
+        <p>UV Index: <span id="uv"></span></p>
+      </div>
+      <div>
+        <h3>5 Day Forecast:</h3>
+        <div class="flex forecast">
+          <div class="forecastItem">1</div>
+          <div class="forecastItem">2</div>
+          <div class="forecastItem">3</div>
+          <div class="forecastItem">4</div>
+          <div class="forecastItem">5</div>
+        </div>
+
+      </div>
+    </section>
   </main>
 
 
