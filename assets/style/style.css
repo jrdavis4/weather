@@ -1,0 +1,40 @@
+body, html {
+  height: 100%;
+}
+
+header {
+  align-items: center;
+  justify-content: center;
+  height: 20%;
+  margin: 10px;
+  background-color: #f1f1f1;
+  
+}
+
+main {
+  height: 75%;
+}
+
+.flex {
+  display: flex;
+}
+
+section {
+  justify-content: center;
+  align-items: center;
+  flex-basis: 0;
+  background-color: #f1f1f1;
+  margin: 10px;
+  font-size: 30px;
+  /* height: auto; */
+}
+
+.left {
+  flex-grow: 1;
+  flex-direction: column;
+}
+
+.right {
+  flex-grow: 4;
+  flex-direction: column;
+}
