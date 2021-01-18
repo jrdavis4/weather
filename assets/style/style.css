@@ -11,10 +11,6 @@ header {
   
 }
 
-main {
-  /* height: auto; */
-}
-
 .flex {
   display: flex;
 }
@@ -56,6 +52,7 @@ section {
   flex-grow: 1;
   flex-direction: column;
   justify-content: start;
+  align-items: center;
 }
 
 .right {
@@ -85,8 +82,18 @@ table, td, tr {
 
 p {
   font-size: 15px;
+  margin: 5px;
+  padding: 0;
 }
 
 h3 {
   margin: 0;
+}
+
+#search {
+  width: 60%;
+}
+
+img[src=""] {
+  display: none;
 }
