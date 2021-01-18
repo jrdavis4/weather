@@ -7,8 +7,7 @@ header {
   justify-content: center;
   height: 20%;
   margin: 10px;
-  background-color: #f1f1f1;
-  
+  background-color: rgb(144, 198, 243);
 }
 
 .flex {
@@ -19,11 +18,10 @@ section {
   justify-content: center;
   align-items: center;
   flex-basis: 0;
-  background-color: #f1f1f1;
+  background-color: rgb(144, 198, 243);
   margin: 10px;
   padding: 15px;
   font-size: 30px;
-  
 }
 
 .forecast {
@@ -37,7 +35,7 @@ section {
   height: 150px;
   width: 150px;
   margin: 10px;
-  background-color: blue;
+  background-color: rgb(48, 107, 196);
   color: white;
 }
 
@@ -57,7 +55,6 @@ section {
 
 .right {
   flex-grow: 4;
-  /* flex-direction: column; */
 }
 
 h5 {
@@ -77,7 +74,7 @@ table, td, tr {
   padding: 10px;
   text-align: center;
   width: 100%;
-
+  cursor: pointer;
 }
 
 p {

@@ -14,23 +14,19 @@ for (var i = 0; i < 5; i++) {
   var epoch = Math.floor(tomorrow2.ts / 1000);
   forecastDays.push(epoch);
 }
-function fromKelvin (temp) {
-  var x = (temp - 273.15) * (9 / 5) + 32
-  var y = x.toFixed() + "\u00B0F";
-  return y;
-}
+
 
 function findWeather(city) {
-  console.log(forecastDays);
 
+  //display city and current day
   var today = luxon.DateTime.local();
   $(".currentCity").text(city + " (" + today.toLocaleString() + ")");
 
+  //API call for current weather
   $.ajax({
     url: weatherURL + city + key,
     method: "GET"
   }).then(function(response) {
-    console.log(response);
     lat = "lat=" + response.coord.lat;
     lon = "&lon=" + response.coord.lon;
     var icon = response.weather[0].icon;
@@ -39,18 +35,31 @@ function findWeather(city) {
     $("#humidity").text(response.main.humidity + "%");
     $("#wind").text(response.wind.speed + " mph");
   
+    //API call for UV index
     $.ajax({
       url: uvURL + lat + lon + key,
       method: "GET"
     }).then(function(responseUV) {
-      $("#uv").text(responseUV.current.uvi);
+      var uv = parseFloat(responseUV.current.uvi);
+      var uvEl = $("#uv");
+      if (uv < 3) {
+        uvEl.css("background-color", "green");
+        uvEl.css("color", "white");
+      } else if (uv < 6) {
+        uvEl.css("background-color", "yellow");
+        uvEl.css("color", "black");
+      } else {
+        uvEl.css("background-color", "red");
+        uvEl.css("color", "white");
+      }
+      uvEl.text(uv);
     })
   
+    //API call for 5 day forecast
     $.ajax({
       url: forecastURL + city + key,
       method: "GET"
     }).then(function(responseForecast) {
-      console.log(responseForecast);
       responseForecast.list.forEach(function(item, i) {
         forecastDays.forEach(function(day, j) {
           if (item.dt === day) {
@@ -62,25 +71,44 @@ function findWeather(city) {
           }
         })
       })
-    
     })
-  
   })
 }
-function test(city) {
-  console.log("yes");
+
+
+function store(city) {
+localStorage.setItem("Last City", city);
 }
+
+
+function fromKelvin (temp) {
+  var x = (temp - 273.15) * (9 / 5) + 32
+  var y = x.toFixed() + "\u00B0F";
+  return y;
+}
+
+
 function addRecent(city) {
   var newEl = $("<tr><td>" + city  + "</td></tr>")
   $("table").append(newEl);
-
 }
 
+
+function init() {
+  if (localStorage.getItem("Last City")) {
+    var city = localStorage.getItem("Last City");
+    findWeather(city);
+    addRecent(city);
+  }
+}
+
+//event listeners
 $("form").on("submit", function(event) {
   event.preventDefault();
   var city = $("#search").val().trim();
   findWeather(city);
   addRecent(city);
+  store(city);
   $("#search").val("");
 })
 
@@ -88,6 +116,10 @@ $("table").click(function(event) {
   var city = event.target.textContent;
   findWeather(city);
 });
+
+//initialize
+init();
+
 
 
 
