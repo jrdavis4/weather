@@ -1,7 +1,7 @@
 var weatherURL = "https://api.openweathermap.org/data/2.5/weather?q=";
 var uvURL = "https://api.openweathermap.org/data/2.5/onecall?"
 var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?q="
-var city = "";
+// var city = "";
 var lat = "lat=";
 var lon = "&lon=";
 var key = "&appid=e33b491956ba81d6d31a5624164e5e9b";
@@ -15,7 +15,8 @@ for (var i = 0; i < 5; i++) {
   forecastDays.push(epoch);
 }
 
-function findWeather() {
+function findWeather(city) {
+  console.log(lat);
   $.ajax({
     url: weatherURL + city + key,
     method: "GET"
@@ -27,6 +28,7 @@ function findWeather() {
     $("#humidity").text(response.main.humidity + "%");
     $("#wind").text(response.wind.speed + " mph");
   
+    console.log(lat);
     $.ajax({
       url: uvURL + lat + lon + key,
       method: "GET"
@@ -55,19 +57,25 @@ function findWeather() {
   
   })
 }
-
+function test(city) {
+  console.log("yes");
+}
 function addRecent(city) {
-$("table").append("<tr><td>" + city + "</td></tr>");
-console.log(city);
+  var newEl = $("<tr><td><p class='recent'>" + city  + "</p></td></tr>")
+  $("table").append(newEl);
 }
 
 $("form").on("submit", function(event) {
   event.preventDefault();
-  city = $("#search").val().trim();
-  findWeather();
+  var city = $("#search").val().trim();
+  findWeather(city);
   addRecent(city);
   $("#search").val("");
 })
+
+$(".recent").click(function () {
+  console.log('test');
+});
 
 
 
